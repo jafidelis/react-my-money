@@ -11,6 +11,8 @@ import TabHeader from '../common/tab/tabHeader';
 import Tabcontent from '../common/tab/tabContent';
 import { selectTab, showTabs } from '../common/tab/tabActions';
 import List from './billingCycleList';
+import Form from './billingCycleForm';
+import { create } from './billingCycleActions';
 
 class BillingCyles extends Component {
     componentWillMount() {
@@ -34,7 +36,9 @@ class BillingCyles extends Component {
                             <Tabcontent id="tabList">
                                 <List />
                             </Tabcontent>
-                            <Tabcontent id="tabCreate"><h1>Tab Create</h1></Tabcontent>
+                            <Tabcontent id="tabCreate">
+                                <Form onSubmit={this.props.create}/>
+                            </Tabcontent>
                             <Tabcontent id="tabUpdate"><h1>Tab Update</h1></Tabcontent>
                             <Tabcontent id="tabDelete"><h1>Tab </h1></Tabcontent>
                         </TabsContent>
@@ -45,6 +49,8 @@ class BillingCyles extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({selectTab, showTabs}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({
+    selectTab, showTabs, create
+}, dispatch);
 
 export default connect(null, mapDispatchToProps)(BillingCyles);
